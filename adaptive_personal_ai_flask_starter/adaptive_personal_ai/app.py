@@ -32,7 +32,7 @@ def init_db():
           id INTEGER PRIMARY KEY AUTOINCREMENT, user_id INTEGER NOT NULL,
           question TEXT NOT NULL, feedback TEXT NOT NULL, created_at TEXT NOT NULL);
         """)
-
+init_db()
 def login_required(fn):
     @wraps(fn)
     def wrapper(*args, **kwargs):
