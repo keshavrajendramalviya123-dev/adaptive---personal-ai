@@ -2,141 +2,87 @@
 {% extends "base.html" %}
 {% block content %}
 
-<section class="login-layout">
+<section class="neon-login">
 
-  <div class="login-copy">
-    <div class="eyebrow">
-      <span class="pulse-dot"></span>
-      YOUR PERSONAL AI WORKSPACE
-    </div>
+  <header class="neon-header">
+    <div class="neon-brand">✦ Adaptive <span>Personal AI</span></div>
+    <div class="neon-help">Your Smart AI Workspace</div>
+  </header>
 
-    <h1>
-      Make your AI<br>
-      <span class="gradient-text">feel like yours.</span>
-    </h1>
+  <div class="neon-content">
 
-    <p class="login-description">
-      A smarter personal AI that understands your goals,
-      adapts to your style and helps you grow every day.
-    </p>
+    <div class="neon-hero">
+      <div class="robot-stage">
+        <div class="robot-ring ring-one"></div>
+        <div class="robot-ring ring-two"></div>
+        <div class="robot">🤖</div>
+        <div class="robot-glow"></div>
+      </div>
 
-    <div class="feature-row">
-      <span>✦</span>
-      <div>
-        <b>Personal AI Assistant</b>
-        <small>Your language. Your pace. Your style.</small>
+      <div class="hero-text">
+        <div class="hero-label">● PERSONAL AI ACCESS</div>
+        <h1>Your Smart<br><span>AI Workspace</span></h1>
+        <p>Organize. Learn. Create.<br>Smarter Together.</p>
+
+        <div class="hero-feature">✦ Smart Assistant</div>
+        <div class="hero-feature">◈ Personal Dashboard</div>
+        <div class="hero-feature">✓ Built for You</div>
       </div>
     </div>
 
-    <div class="feature-row">
-      <span>◈</span>
-      <div>
-        <b>Smart Personalization</b>
-        <small>AI that adapts to your preferences.</small>
-      </div>
-    </div>
+    <div class="neon-panel">
 
-    <div class="feature-row">
-      <span>⌘</span>
-      <div>
-        <b>One Connected Workspace</b>
-        <small>Tasks, progress and insights in one place.</small>
-      </div>
-    </div>
+      <div class="panel-heading">Welcome to your AI</div>
+      <p class="panel-subtitle" id="auth-description">
+        Sign in to enter your personal workspace.
+      </p>
 
-    <div class="login-foot">
-      BUILT TO ADAPT · DESIGNED TO FOCUS
+      <div class="auth-tabs">
+        <button type="button" class="auth-tab active" id="signin-tab">Sign In</button>
+        <button type="button" class="auth-tab" id="signup-tab">Create Account</button>
+      </div>
+
+      <div class="auth-options">
+        <button type="button" class="auth-option active" id="email-option">✉ Email</button>
+        <button type="button" class="auth-option" id="phone-option">☎ Phone</button>
+      </div>
+
+      <div id="email-fields">
+        <label>Your Name</label>
+        <input id="demo-name" class="neon-input" placeholder="Enter your name">
+
+        <label>Email Address</label>
+        <input id="demo-email" class="neon-input" type="email" placeholder="Enter your email">
+      </div>
+
+      <div id="phone-fields" hidden>
+        <label>Phone Number</label>
+        <input id="phone-number" class="neon-input" type="tel" placeholder="Enter phone number">
+      </div>
+
+      <div id="password-fields" hidden>
+        <label>Password</label>
+        <input id="auth-password" class="neon-input" type="password" placeholder="Enter password">
+      </div>
+
+      <button id="login-btn" class="neon-submit">
+        Enter demo workspace →
+      </button>
+
+      <div class="neon-divider">OR</div>
+
+      <button type="button" class="neon-google" disabled>
+        🌐 Continue with Google
+      </button>
+
+      <p class="neon-bottom">
+        Your personal space. Your intelligence.
+      </p>
+
     </div>
   </div>
 
-  <div class="login-visual">
-    <div class="orbit orbit-a"></div>
-    <div class="orbit orbit-b"></div>
-
-    <div class="core-card">
-      <div class="core-icon">✦</div>
-      <div class="core-title">
-        Your space.<br>
-        <span>Your intelligence.</span>
-      </div>
-      <div class="core-bars">
-        <i></i><i></i><i></i>
-      </div>
-      <small>PERSONAL AI ENGINE · ONLINE</small>
-    </div>
-
-    <div class="float-chip chip-top">✧ Adaptive AI</div>
-    <div class="float-chip chip-bottom">◈ Smart workspace</div>
-  </div>
-
-  <div class="login-panel">
-
-    <div class="panel-top">
-      <span class="tiny-star">✦</span>
-      PERSONAL AI ACCESS
-    </div>
-
-    <h2 id="auth-heading">Welcome back.</h2>
-    <p id="auth-description">Sign in to enter your personal workspace.</p>
-
-    <div class="auth-tabs">
-      <button type="button" class="auth-tab active" id="signin-tab">
-        Sign In
-      </button>
-      <button type="button" class="auth-tab" id="signup-tab">
-        Create Account
-      </button>
-    </div>
-
-    <div class="auth-options">
-      <button type="button" class="auth-option active" id="email-option">
-        Email
-      </button>
-      <button type="button" class="auth-option" id="phone-option">
-        Phone
-      </button>
-    </div>
-
-    <div id="email-fields">
-      <label class="field-label" for="demo-name">Your name</label>
-      <input id="demo-name" class="field" value="Keshav" placeholder="Enter your name">
-
-      <label class="field-label" for="demo-email">Email address</label>
-      <input id="demo-email" class="field" type="email" value="keshav@example.com" placeholder="you@example.com">
-    </div>
-
-    <div id="phone-fields" hidden>
-      <label class="field-label" for="phone-number">Phone number</label>
-      <input id="phone-number" class="field" type="tel" placeholder="Enter phone number">
-      <p class="fine-print">Phone OTP login is not connected yet.</p>
-    </div>
-
-    <div id="password-fields" hidden>
-      <label class="field-label" for="auth-password">Password</label>
-      <input id="auth-password" class="field" type="password" placeholder="Enter password">
-      <p class="fine-print">Password authentication is not connected yet.</p>
-    </div>
-
-    <button id="login-btn" class="primary-btn full-btn">
-      Enter demo workspace →
-    </button>
-
-    <button type="button" class="google-btn" id="google-btn" disabled>
-      Continue with Google
-    </button>
-
-    <div class="divider-text">
-      <span></span>
-      <small>SECURE PERSONAL SPACE</small>
-      <span></span>
-    </div>
-
-    <p class="fine-print">
-      Demo access is available. Email/password, phone OTP and Google
-      authentication require backend setup.
-    </p>
-
-  </div>
+  <footer class="neon-footer">✦ POWERED BY ADAPTIVE PERSONAL AI TECHNOLOGY</footer>
 
 </section>
 
