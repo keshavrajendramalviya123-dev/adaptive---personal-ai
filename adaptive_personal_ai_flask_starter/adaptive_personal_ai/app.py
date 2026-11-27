@@ -4,6 +4,16 @@ from datetime import datetime, date, timedelta
 from functools import wraps
 
 app = Flask(__name__)
+
+# Application Branding
+APP_NAME = "Personalized AI Assistance"
+
+@app.context_processor
+def inject_app_name():
+    return {
+        "app_name": APP_NAME
+    }
+
 app.secret_key = os.environ.get("SECRET_KEY", "change-this-development-secret")
 DB = os.path.join(os.path.dirname(__file__), "adaptive_ai.db")
 
