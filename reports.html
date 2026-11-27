@@ -1,1 +1,53 @@
-{% extends "base.html" %}{% block content %}<header class="page-header"><div class="eyebrow">REFLECT. RESET. REPEAT.</div><h1>Weekly insights</h1><p class="muted">A simple, honest snapshot of your task activity.</p></header><section class="report-hero surface-card"><div><span class="eyebrow">WEEKLY COMPLETION</span><div class="report-number" id="report-rate">0%</div><p class="muted">Progress comes from consistent action.</p></div><div class="report-ring" id="report-ring"><div><b id="ring-number">0%</b><small>COMPLETE</small></div></div></section><section class="stats-grid report-stats"><article class="stat-card"><div class="stat-top"><span>Total tasks</span><b class="stat-icon violet">▤</b></div><strong id="report-total">0</strong><small>Created this week</small></article><article class="stat-card"><div class="stat-top"><span>Completed</span><b class="stat-icon green">✓</b></div><strong id="report-done">0</strong><small>Marked as done</small></article><article class="stat-card"><div class="stat-top"><span>Pending</span><b class="stat-icon amber">◷</b></div><strong id="report-pending">0</strong><small>Still on your list</small></article></section><section class="bottom-grid"><article class="surface-card"><h3>Areas needing attention</h3><p class="muted">Categories with multiple pending tasks or under 50% completion.</p><div id="weak-areas" class="tag-wrap"><span class="empty-state">No data yet.</span></div></article><article class="surface-card"><h3>Suggested next moves</h3><div id="tips-list" class="tips-list">Add tasks to receive suggestions.</div></article></section><p class="fine-print report-note">Analysis uses SQL counts and simple if/else rules. It is not machine learning and depends on the categories and task statuses you enter.</p>{% endblock %}{% block scripts %}<script src="{{ url_for('static',filename='js/reports.js') }}"></script>{% endblock %}
+
+{% extends "base.html" %}
+
+{% block content %}
+
+<section class="dashboard-page">
+
+    <header class="topbar">
+        <div>
+            <div class="eyebrow">YOUR PERSONAL PROGRESS</div>
+            <h1>Insights & <span>Reports</span> ◷</h1>
+            <p class="muted">
+                Explore your activity and progress with
+                Personalized AI Assistance.
+            </p>
+        </div>
+    </header>
+
+    <section class="dashboard-grid">
+
+        <article class="dashboard-card">
+            <div class="card-icon">✦</div>
+            <h3>AI Activity</h3>
+            <p>Review your AI assistant activity.</p>
+        </article>
+
+        <article class="dashboard-card">
+            <div class="card-icon">▤</div>
+            <h3>Task Progress</h3>
+            <p>Keep track of your tasks and goals.</p>
+        </article>
+
+        <article class="dashboard-card">
+            <div class="card-icon">◈</div>
+            <h3>Personal Insights</h3>
+            <p>Understand your productivity and habits.</p>
+        </article>
+
+    </section>
+
+    <section class="dashboard-bottom">
+        <div class="dashboard-card">
+            <h3>Your Progress Matters</h3>
+            <p>
+                Personalized AI Assistance helps you organize,
+                learn and improve your daily productivity.
+            </p>
+        </div>
+    </section>
+
+</section>
+
+{% endblock %}
