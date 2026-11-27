@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, jsonify, session, redirect, u
 import sqlite3, os
 from datetime import datetime, date, timedelta
 from functools import wraps
+from google import genai
 
 app = Flask(__name__)
 app.secret_key = os.environ.get("SECRET_KEY", "change-this-development-secret")
@@ -32,7 +33,7 @@ def init_db():
           id INTEGER PRIMARY KEY AUTOINCREMENT, user_id INTEGER NOT NULL,
           question TEXT NOT NULL, feedback TEXT NOT NULL, created_at TEXT NOT NULL);
         """)
-
+init_db()
 def login_required(fn):
     @wraps(fn)
     def wrapper(*args, **kwargs):
@@ -114,44 +115,83 @@ def save_preferences():
                     (d["language"],d["difficulty"],d["response_length"],d["explanation_style"],session["user_id"]))
     return jsonify(ok=True, message="Your preferences have been saved.")
 
-TEMPLATES = {
- "python": "Python is a beginner-friendly programming language. It is used for automation, web development, data science and AI.",
- "database": "A database stores information in an organized way. SQLite is a lightweight relational database that uses tables, rows and columns.",
- "machine learning": "Machine learning is a field of AI where a system learns patterns from data to make predictions or decisions.",
- "flask": "Flask is a lightweight Python web framework. It helps connect browser pages to Python routes and APIs."
-}
-def personalize(question, pref):
-    q = question.lower()
-    answer = next((v for k,v in TEMPLATES.items() if k in q),
-                  "I do not have a stored answer template for this topic yet. Add a matching topic template in TEMPLATES inside app.py.")
-    if pref["language"] == "Hindi":
-        translations = {
-          "Python is a beginner-friendly programming language. It is used for automation, web development, data science and AI.": "Python ek beginner-friendly programming language hai. Iska use automation, web development, data science aur AI mein hota hai.",
-          "A database stores information in an organized way. SQLite is a lightweight relational database that uses tables, rows and columns.": "Database information ko organized form mein store karta hai. SQLite ek lightweight relational database hai jo tables, rows aur columns use karta hai.",
-          "Machine learning is a field of AI where a system learns patterns from data to make predictions or decisions.": "Machine learning, AI ka field hai jahan system data se patterns seekhkar predictions ya decisions leta hai.",
-          "Flask is a lightweight Python web framework. It helps connect browser pages to Python routes and APIs.": "Flask ek lightweight Python web framework hai. Ye browser pages ko Python routes aur APIs se connect karta hai."
-        }
-        answer = translations.get(answer, answer)
-    if pref["difficulty"] == "Simple":
-        answer = answer.replace("relational", "table-based").replace("predictions or decisions", "guesses or decisions")
-    if pref["response_length"] == "Short":
-        answer = answer.split(".")[0] + "."
-    if pref["explanation_style"] == "Numbered steps":
-        answer = "1. Understand the main idea.\\n2. " + answer
-    elif pref["explanation_style"] == "Examples":
-        answer += "\\n\\nExample: Ask a specific question such as “What is Python?” to get a focused explanation."
-    return answer
+def generate_ai_answer(question, pref):
+    api_key = os.environ.get("GEMINI_API_KEY")
+
+    if not api_key:
+        raise RuntimeError("Gemini API key is not configured.")
+
+    language = pref["language"] if pref else "English"
+    difficulty = pref["difficulty"] if pref else "Simple"
+    response_length = pref["response_length"] if pref else "Detailed"
+    explanation_style = pref["explanation_style"] if pref else "Examples"
+
+    prompt = f"""
+You are the AI assistant of Personalized AI Assistance.
+
+Answer the user's question accurately and clearly.
+
+Follow these preferences:
+- Language: {language}
+- Difficulty: {difficulty}
+- Response length: {response_length}
+- Explanation style: {explanation_style}
+
+Explain concepts with examples when useful.
+For programming questions, provide correct code and explain it.
+If you are uncertain, clearly say so.
+Do not invent facts.
+
+User's question:
+{question}
+"""
+
+    client = genai.Client(api_key=api_key)
+
+    try:
+        response = client.models.generate_content(
+            model="gemini-3.8-flash",
+            contents=prompt
+        )
+
+        answer = (response.text or "").strip()
+
+        if not answer:
+            raise RuntimeError("AI returned an empty answer.")
+
+        return answer
+
+    finally:
+        client.close()
 
 @app.post("/api/questions/ask")
 @login_required
 def question_ask():
     d = request.get_json(silent=True) or {}
     question = (d.get("question") or "").strip()
-    if not question: return jsonify(ok=False, error="Please enter a question."), 400
-    if len(question) > 1000: return jsonify(ok=False, error="Maximum question length is 1000 characters."), 400
+
+    if not question:
+        return jsonify(ok=False, error="Please enter a question."), 400
+
+    if len(question) > 1000:
+        return jsonify(ok=False, error="Maximum question length is 1000 characters."), 400
+
     with db() as con:
-        p = con.execute("SELECT * FROM preferences WHERE user_id=?", (session["user_id"],)).fetchone()
-    return jsonify(ok=True, answer=personalize(question, p))
+        p = con.execute(
+            "SELECT * FROM preferences WHERE user_id=?",
+            (session["user_id"],)
+        ).fetchone()
+
+    try:
+        answer = generate_ai_answer(question, p)
+        return jsonify(ok=True, answer=answer)
+
+    except Exception:
+        app.logger.exception("Gemini question generation failed")
+        return jsonify(
+            ok=False,
+            error="AI service is temporarily unavailable. Please check the server configuration and try again."
+        ), 503
 
 @app.post("/api/feedback")
 @login_required
