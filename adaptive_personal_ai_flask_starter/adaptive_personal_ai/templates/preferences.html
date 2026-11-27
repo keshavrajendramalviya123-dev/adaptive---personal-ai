@@ -1,2 +1,52 @@
-{% extends "base.html" %}{% block content %}<header class="page-header"><div class="eyebrow">MAKE IT PERSONAL</div><h1>Your preferences</h1><p class="muted">Choose how your Personal AI should communicate with you.</p></header><section class="surface-card settings-card"><div class="settings-intro"><span class="large-spark">✧</span><div><h2>Your way of learning matters.</h2><p class="muted">These four choices shape the response templates in this prototype.</p></div></div>
-<div class="settings-grid"><label>Preferred language<select id="language"><option>English</option><option>Hindi</option></select><small>Choose the language for answers.</small></label><label>Difficulty level<select id="difficulty"><option>Simple</option><option>Normal</option><option>Technical</option></select><small>Choose how detailed the wording should be.</small></label><label>Response length<select id="response_length"><option>Short</option><option>Detailed</option></select><small>Quick summary or fuller explanation.</small></label><label>Explanation style<select id="explanation_style"><option>Examples</option><option>Numbered steps</option></select><small>Choose how ideas are presented.</small></label></div><div class="settings-footer"><span class="muted">You can update these choices anytime.</span><button class="primary-btn" id="save-preferences">Save preferences <span>→</span></button></div></section>{% endblock %}{% block scripts %}<script src="{{ url_for('static',filename='js/preferences.js') }}"></script>{% endblock %}
+
+{% extends "base.html" %}
+
+{% block content %}
+
+<section class="dashboard-page">
+
+    <header class="topbar">
+        <div>
+            <div class="eyebrow">PERSONALIZATION SETTINGS</div>
+            <h1>Your <span>Preferences</span> ⚙</h1>
+            <p class="muted">
+                Customize Personalized AI Assistance according to your needs.
+            </p>
+        </div>
+    </header>
+
+    <section class="dashboard-grid">
+
+        <article class="dashboard-card">
+            <div class="card-icon">✦</div>
+            <h3>AI Personalization</h3>
+            <p>Make your AI assistant more suitable for your needs.</p>
+        </article>
+
+        <article class="dashboard-card">
+            <div class="card-icon">◈</div>
+            <h3>Learning Preferences</h3>
+            <p>Set your preferred learning and working style.</p>
+        </article>
+
+        <article class="dashboard-card">
+            <div class="card-icon">⚙</div>
+            <h3>Workspace Settings</h3>
+            <p>Manage your personal workspace experience.</p>
+        </article>
+
+    </section>
+
+    <section class="dashboard-bottom">
+        <div class="dashboard-card">
+            <h3>About Personalized AI Assistance</h3>
+            <p>
+                Your personal AI workspace, designed to adapt
+                to your preferences, learning and productivity.
+            </p>
+        </div>
+    </section>
+
+</section>
+
+{% endblock %}
