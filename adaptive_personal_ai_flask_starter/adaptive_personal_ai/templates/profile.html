@@ -1,1 +1,50 @@
-{% extends "base.html" %}{% block content %}<header class="page-header"><div class="eyebrow">PERSONAL SPACE</div><h1>Your profile</h1><p class="muted">Your account details in one place.</p></header><section class="surface-card narrow-card profile-card"><div class="profile-avatar" id="profile-avatar">K</div><h2 id="profile-name">Loading…</h2><p id="profile-email" class="muted">—</p><div class="profile-meta"><span>ACCOUNT CREATED</span><b id="profile-created">—</b></div><button class="danger-btn" id="profile-logout">Sign out of this workspace</button></section>{% endblock %}{% block scripts %}<script src="{{ url_for('static',filename='js/profile.js') }}"></script>{% endblock %}
+
+{% extends "base.html" %}
+
+{% block content %}
+
+<section class="dashboard-page">
+
+    <header class="topbar">
+        <div>
+            <div class="eyebrow">YOUR PERSONAL ACCOUNT</div>
+            <h1>My <span>Profile</span> ◉</h1>
+            <p class="muted">
+                Manage your Personalized AI Assistance account.
+            </p>
+        </div>
+    </header>
+
+    <section class="dashboard-grid">
+
+        <article class="dashboard-card">
+            <div class="card-icon">◉</div>
+            <h3>Personal Information</h3>
+            <p>View and manage your account information.</p>
+        </article>
+
+        <article class="dashboard-card">
+            <div class="card-icon">✦</div>
+            <h3>AI Workspace</h3>
+            <p>Your personalized AI workspace and experience.</p>
+        </article>
+
+    </section>
+
+    <section class="dashboard-bottom">
+        <div class="dashboard-card">
+            <h3>Personalized AI Assistance</h3>
+            <p>
+                Your personal space for learning, planning
+                and productivity.
+            </p>
+
+            <button id="profile-logout" class="neon-submit">
+                Sign Out →
+            </button>
+        </div>
+    </section>
+
+</section>
+
+{% endblock %}
