@@ -1,17 +1,17 @@
 <!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>{{ title or "Adaptive Personal AI" }}</title><link rel="stylesheet" href="{{ url_for('static',filename='css/style.css') }}"></head>
+<title>{{ title or "personalized ai assistanceized ai assistanceized ai assistance" }}</title><link rel="stylesheet" href="{{ url_for('static',filename='css/style.css') }}"></head>
 <body><div class="ambient ambient-one"></div><div class="ambient ambient-two"></div>
 {% if request.endpoint != 'login' %}
-<aside class="sidebar"><a class="brand" href="/dashboard"><span class="brand-mark">✦</span><span>adaptive<span class="brand-light">.ai</span><small>PERSONAL INTELLIGENCE</small></span></a>
+<aside class="sidebar"><a class="brand" href="/dashboard"><span class="brand-mark">✦</span><span>personalized ai assistance<span class="brand-light">.ai</span><small>personalized ai assistanceized ai assistance INTELLIGENCE</small></span></a>
 <nav><span class="nav-label">WORKSPACE</span>
 <a href="/dashboard" class="{{ 'active' if request.endpoint=='dashboard' else '' }}">◫ <span>Overview</span></a>
-<a href="/ask" class="{{ 'active' if request.endpoint=='ask' else '' }}">✧ <span>Ask Personal AI</span></a>
+<a href="/ask" class="{{ 'active' if request.endpoint=='ask' else '' }}">✧ <span>Ask personalized ai assistanceized ai assistance AI</span></a>
 <a href="/tasks" class="{{ 'active' if request.endpoint=='tasks' else '' }}">▤ <span>Weekly tasks</span></a>
 <a href="/reports" class="{{ 'active' if request.endpoint=='reports' else '' }}">◷ <span>Insights & reports</span></a>
-<span class="nav-label nav-gap">PERSONAL</span>
+<span class="nav-label nav-gap">personalized ai assistance</span>
 <a href="/preferences" class="{{ 'active' if request.endpoint=='preferences' else '' }}">⚙ <span>Preferences</span></a>
 <a href="/profile" class="{{ 'active' if request.endpoint=='profile' else '' }}">◉ <span>My profile</span></a></nav>
-<div class="sidebar-bottom"><div class="mini-avatar">K</div><div><b id="side-name">Your workspace</b><small>Personal account</small></div><button id="logout" class="icon-button" title="Sign out">↗</button></div></aside>
+<div class="sidebar-bottom"><div class="mini-avatar">K</div><div><b id="side-name">Your workspace</b><small>personalized ai assistance account</small></div><button id="logout" class="icon-button" title="Sign out">↗</button></div></aside>
 {% endif %}
 <main class="{{ 'main-content' if request.endpoint != 'login' else 'login-main' }}">{% block content %}{% endblock %}</main>
 <div id="toast" class="toast"></div><script src="{{ url_for('static',filename='js/api.js') }}"></script><script src="{{ url_for('static',filename='js/app.js') }}"></script>{% block scripts %}{% endblock %}
