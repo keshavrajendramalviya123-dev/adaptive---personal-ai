@@ -94,9 +94,19 @@ def logout():
 @login_required
 def me():
     with db() as con:
-        u = con.execute("SELECT name,email,created_at FROM users WHERE id=?", (session["user_id"],)).fetchone()
-    return jsonify(ok=True, user=dict(u))
+        u = con.execute(
+            "SELECT name,email,created_at FROM users WHERE id=?",
+            (session["user_id"],)
+        ).fetchone()
 
+    if u is None:
+        session.clear()
+        return jsonify(
+            ok=False,
+            error="Session expired. Please sign in again."
+        ), 401
+
+    return jsonify(ok=True, user=dict(u))
 @app.get("/api/preferences")
 @login_required
 def get_preferences():
