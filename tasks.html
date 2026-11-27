@@ -1,1 +1,43 @@
-{% extends "base.html" %}{% block content %}<header class="page-header"><div class="eyebrow">SMALL STEPS. REAL PROGRESS.</div><h1>Weekly tasks</h1><p class="muted">Give your goals a place, a deadline and a next action.</p></header><section class="surface-card add-task-card"><div><h2>Add a new task</h2><p class="muted">Keep it clear and achievable.</p></div><div class="task-form"><input id="task-title" class="field" maxlength="120" placeholder="e.g. Complete Python functions practice"><select id="task-category"><option>Study</option><option>Project</option><option>Personal</option><option>Career</option></select><input id="task-deadline" class="field" type="date"><button class="primary-btn" id="add-task">Add task +</button></div></section><section class="surface-card task-list-card"><div class="card-heading"><div><h2>Your task list</h2><p class="muted">Mark work done as you go.</p></div><span id="task-count" class="count-pill">0 TASKS</span></div><div id="task-list"><div class="empty-state">Your list is clear. Add your first task above.</div></div></section>{% endblock %}{% block scripts %}<script src="{{ url_for('static',filename='js/tasks.js') }}"></script>{% endblock %}
+
+{% extends "base.html" %}
+
+{% block content %}
+
+<section class="dashboard-page">
+
+    <header class="topbar">
+        <div>
+            <div class="eyebrow">STAY ORGANIZED</div>
+            <h1>My <span>Weekly Tasks</span> ▤</h1>
+            <p class="muted">
+                Manage your work and stay productive with
+                Personalized AI Assistance.
+            </p>
+        </div>
+    </header>
+
+    <section class="dashboard-bottom">
+        <div class="dashboard-card">
+            <h3>Plan Your Week</h3>
+            <p>Keep your weekly goals and activities organized.</p>
+
+            <div class="task-form">
+                <input
+                    id="task-input"
+                    class="neon-input"
+                    type="text"
+                    placeholder="Enter a new task..."
+                >
+
+                <button id="add-task-btn" class="neon-submit">
+                    Add Task +
+                </button>
+            </div>
+
+            <div id="task-list"></div>
+        </div>
+    </section>
+
+</section>
+
+{% endblock %}
