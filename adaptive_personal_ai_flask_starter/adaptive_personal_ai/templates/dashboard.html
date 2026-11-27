@@ -1,153 +1,89 @@
 
 {% extends "base.html" %}
+
 {% block content %}
 
-<div class="ai-dashboard">
+<section class="dashboard-page">
 
-  <header class="ai-topbar">
-    <div class="ai-brand">✦ Adaptive <span>AI</span></div>
-    <div class="ai-top-right">
-      <span class="ai-live">● SYSTEM ONLINE</span>
-      <div class="ai-user"><span>K</span> <b id="welcome-name">Keshav</b></div>
-    </div>
-  </header>
-
-  <div class="ai-layout">
-
-    <aside class="ai-sidebar">
-      <div class="ai-side-title">WORKSPACE</div>
-      <a class="ai-nav active" href="/dashboard">▣ <span>Dashboard</span></a>
-      <a class="ai-nav" href="/tasks">☑ <span>My Tasks</span></a>
-      <a class="ai-nav" href="/ask">✧ <span>Ask AI</span></a>
-      <a class="ai-nav" href="/reports">▥ <span>Analytics</span></a>
-      <a class="ai-nav" href="/preferences">⚙ <span>Preferences</span></a>
-
-      <div class="ai-side-bottom">
-        <div class="ai-mini-robot">🤖</div>
-        <h3>Your AI. Your Rules.</h3>
-        <p>Your personal workspace is ready.</p>
-        <a href="/ask">Talk to AI →</a>
-      </div>
-    </aside>
-
-    <main class="ai-main">
-
-      <section class="ai-welcome">
-        <div class="ai-welcome-copy">
-          <div class="ai-eyebrow">✦ YOUR PERSONAL AI WORKSPACE</div>
-          <h1>Welcome Back,<br><span id="hero-name">Keshav</span>!</h1>
-          <p>Your personal AI assistant is ready to help you today.</p>
-          <a href="/ask" class="ai-primary-btn">Explore Your AI <span>→</span></a>
-        </div>
-
-        <div class="ai-robot-scene">
-          <div class="ai-orbit orbit-a"></div>
-          <div class="ai-orbit orbit-b"></div>
-          <div class="ai-platform"></div>
-
-          <div class="ai-robot">
-            <div class="ai-robot-ear left-ear"></div>
-            <div class="ai-robot-ear right-ear"></div>
-            <div class="ai-robot-head">
-              <div class="ai-robot-eye"></div>
-              <div class="ai-robot-eye"></div>
-              <div class="ai-robot-smile"></div>
-            </div>
-            <div class="ai-robot-neck"></div>
-            <div class="ai-robot-body">
-              <div class="ai-robot-core">✦</div>
-            </div>
-            <div class="ai-robot-arm left-arm"></div>
-            <div class="ai-robot-arm right-arm"></div>
-          </div>
-          <div class="ai-floating-tag">AI ACTIVE ✦</div>
-        </div>
-      </section>
-
-      <section class="ai-section-heading">
+    <header class="topbar">
         <div>
-          <div class="ai-eyebrow">YOUR PERFORMANCE</div>
-          <h2>Dashboard Overview</h2>
-          <p>Your progress, goals and daily momentum.</p>
+            <div class="eyebrow">YOUR PERSONAL AI WORKSPACE</div>
+
+            <h1>
+                Welcome back,
+                <span id="welcome-name">Keshav</span> ✦
+            </h1>
+
+            <p class="muted">
+                Your Personalized AI Assistance workspace is ready.
+                Let's make today productive.
+            </p>
         </div>
-        <a href="/reports" class="ai-text-link">View Reports →</a>
-      </section>
 
-      <section class="ai-stats">
-        <article class="ai-stat-card cyan-card">
-          <div class="ai-stat-icon">✓</div>
-          <p>Tasks Completed</p>
-          <strong id="stat-done">0</strong>
-          <small>Completed this week</small>
-        </article>
+        <div class="date-pill" id="current-date">
+            Your Dashboard
+        </div>
+    </header>
 
-        <article class="ai-stat-card purple-card">
-          <div class="ai-stat-icon">◷</div>
-          <p>In Progress</p>
-          <strong id="stat-pending">0</strong>
-          <small>Tasks to focus on</small>
-        </article>
-
-        <article class="ai-stat-card blue-card">
-          <div class="ai-stat-icon">↗</div>
-          <p>Weekly Completion</p>
-          <strong id="stat-rate">0%</strong>
-          <small>Your current momentum</small>
-        </article>
-      </section>
-
-      <section class="ai-content-grid">
-
-        <article class="ai-glass-card">
-          <div class="ai-card-heading">
-            <div>
-              <h3>Recent Tasks</h3>
-              <p>Your next steps at a glance.</p>
-            </div>
-            <a href="/tasks">View All →</a>
-          </div>
-          <div id="recent-tasks" class="ai-task-list">
-            <div class="empty-state">No tasks yet. Add one small goal to get started.</div>
-          </div>
-          <a href="/tasks" class="ai-outline-btn">Manage My Tasks →</a>
-        </article>
-
-        <article class="ai-glass-card">
-          <div class="ai-card-heading">
-            <div>
-              <h3>Your AI, Your Way</h3>
-              <p>Personalization settings</p>
-            </div>
-            <span class="ai-sparkle">✧</span>
-          </div>
-          <div class="ai-preference-visual">✦</div>
-          <div id="preference-summary" class="preference-summary">
-            Loading your preferences…
-          </div>
-          <a href="/preferences" class="ai-outline-btn">Customize AI →</a>
-        </article>
-
-      </section>
-
-      <section class="ai-bottom-banner">
+    <section class="dashboard-welcome">
         <div>
-          <div class="ai-eyebrow">READY FOR WHAT'S NEXT?</div>
-          <h2>Make your next move smarter.</h2>
-          <p>Ask your personal AI assistant and get started.</p>
+            <div class="eyebrow">PERSONALIZED AI ASSISTANCE</div>
+            <h2>Your day. Your goals. Your AI.</h2>
+            <p>
+                Organize your work, manage your tasks and get help
+                from your personal AI assistant.
+            </p>
+
+            <a href="/ask" class="neon-submit">
+                Ask Your AI →
+            </a>
         </div>
-        <a href="/ask" class="ai-primary-btn">Ask Your AI →</a>
-      </section>
 
-      <footer class="ai-footer">
-        ✦ POWERED BY ADAPTIVE PERSONAL AI TECHNOLOGY
-      </footer>
+        <div class="welcome-icon">🤖</div>
+    </section>
 
-    </main>
-  </div>
-</div>
+    <section class="dashboard-grid">
 
-{% endblock %}
+        <article class="dashboard-card">
+            <div class="card-icon">✦</div>
+            <h3>AI Assistant</h3>
+            <p>Get personalized help with your daily work.</p>
+            <a href="/ask">Open Assistant →</a>
+        </article>
 
-{% block scripts %}
-<script src="{{ url_for('static',filename='js/dashboard.js') }}"></script>
+        <article class="dashboard-card">
+            <div class="card-icon">▤</div>
+            <h3>Weekly Tasks</h3>
+            <p>Organize your tasks and track your progress.</p>
+            <a href="/tasks">Manage Tasks →</a>
+        </article>
+
+        <article class="dashboard-card">
+            <div class="card-icon">◈</div>
+            <h3>Preferences</h3>
+            <p>Customize your AI workspace and preferences.</p>
+            <a href="/preferences">Customize →</a>
+        </article>
+
+        <article class="dashboard-card">
+            <div class="card-icon">◷</div>
+            <h3>Insights & Reports</h3>
+            <p>Review your activity and personal progress.</p>
+            <a href="/reports">View Reports →</a>
+        </article>
+
+    </section>
+
+    <section class="dashboard-bottom">
+        <div class="dashboard-card">
+            <h3>Personalized AI Assistance</h3>
+            <p>
+                A workspace designed to adapt to your learning,
+                planning and productivity needs.
+            </p>
+        </div>
+    </section>
+
+</section>
+
 {% endblock %}
