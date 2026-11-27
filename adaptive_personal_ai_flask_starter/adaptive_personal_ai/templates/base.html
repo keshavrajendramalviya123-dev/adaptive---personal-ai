@@ -4,70 +4,88 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <title>{{ title or "Personalized AI Assistance" }}</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
 </head>
+
 <body>
 
 <div class="ambient ambient-one"></div>
 <div class="ambient ambient-two"></div>
 
 {% if request.endpoint != 'login' %}
+
 <aside class="sidebar">
 
     <a class="brand" href="/dashboard">
         <span class="brand-mark">✦</span>
-        <span>
+
+        <span class="brand-name">
             Personalized AI Assistance
-            <span class="brand-light">.ai</span>
-            <small>PERSONALIZED INTELLIGENCE</small>
+            <small>YOUR PERSONAL AI WORKSPACE</small>
         </span>
     </a>
 
     <nav>
         <span class="nav-label">WORKSPACE</span>
 
-        <a href="/dashboard" class="{{ 'active' if request.endpoint=='dashboard' else '' }}">
+        <a href="/dashboard"
+           class="{{ 'active' if request.endpoint == 'dashboard' else '' }}">
             ◫ <span>Overview</span>
         </a>
 
-        <a href="/ask" class="{{ 'active' if request.endpoint=='ask' else '' }}">
-            ✧ <span>Ask Personalized AI</span>
+        <a href="/ask"
+           class="{{ 'active' if request.endpoint == 'ask' else '' }}">
+            ✧ <span>Ask AI</span>
         </a>
 
-        <a href="/tasks" class="{{ 'active' if request.endpoint=='tasks' else '' }}">
-            ▤ <span>Weekly tasks</span>
+        <a href="/tasks"
+           class="{{ 'active' if request.endpoint == 'tasks' else '' }}">
+            ▤ <span>Weekly Tasks</span>
         </a>
 
-        <a href="/reports" class="{{ 'active' if request.endpoint=='reports' else '' }}">
-            ◷ <span>Insights & reports</span>
+        <a href="/reports"
+           class="{{ 'active' if request.endpoint == 'reports' else '' }}">
+            ◷ <span>Insights & Reports</span>
         </a>
 
         <span class="nav-label nav-gap">PERSONALIZATION</span>
 
-        <a href="/preferences" class="{{ 'active' if request.endpoint=='preferences' else '' }}">
+        <a href="/preferences"
+           class="{{ 'active' if request.endpoint == 'preferences' else '' }}">
             ⚙ <span>Preferences</span>
         </a>
 
-        <a href="/profile" class="{{ 'active' if request.endpoint=='profile' else '' }}">
-            ◉ <span>My profile</span>
+        <a href="/profile"
+           class="{{ 'active' if request.endpoint == 'profile' else '' }}">
+            ◉ <span>My Profile</span>
         </a>
     </nav>
 
     <div class="sidebar-bottom">
         <div class="mini-avatar">K</div>
+
         <div>
-            <b id="side-name">Your workspace</b>
-            <small>Personalized AI Assistance account</small>
+            <b id="side-name">Your Workspace</b>
+            <small>Personalized AI Assistance</small>
         </div>
-        <button id="logout" class="icon-button" title="Sign out">↗</button>
+
+        <button id="logout"
+                class="icon-button"
+                title="Sign out">↗</button>
     </div>
 
 </aside>
+
 {% endif %}
 
 <main class="{{ 'main-content' if request.endpoint != 'login' else 'login-main' }}">
+
     {% block content %}{% endblock %}
+
 </main>
 
 <div id="toast" class="toast"></div>
